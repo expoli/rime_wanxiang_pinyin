@@ -1,22 +1,19 @@
 # Weasel settings
 # encoding: utf-8
 
-config_version: "2024-04-16"
+# 感谢 @[Mirtle](https://github.com/mirtlecn) 整理
+# Rime 定制指南 <https://github.com/rime/home/wiki/CustomizationGuide#定製指南>
+# Weasel 定制文档 <https://github.com/rime/weasel/wiki/Weasel-定制化>
+# Weasel 字体设定 <https://github.com/rime/weasel/wiki/字體設定>
+
+# 部分选项需要将 Weasel 更新 16.0 及以上版本才能生效
+config_version: "2024-05-14"
 
 # [app_options]
 # 针对特定应用的设置
 app_options:
-  cmd.exe:
-      ascii_mode: true
-      ascii_punct: true
-  idea64.exe:
-      ascii_mode: false
-      ascii_punct: true
-  Code.exe:
-      ascii_mode: false
-      ascii_punct: true
   firefox.exe:
-    inline_preedit: true # 行内显示预编辑区：规避 <https://github.com/rime/weasel/issues/946>
+    inline_preedit: true   # 行内显示预编辑区：规避 <https://github.com/rime/weasel/issues/946>
   # cmd.exe:               # 带 .exe 的进程名：Weasel 15.0 及之前版本须小写; PR #1049 合并后释出的版本大小写不敏感
   #   ascii_mode: true     # 英文模式
   # conhost.exe:
@@ -45,7 +42,8 @@ global_ascii: false                        # 切换为 ascii 模式时，是否�
 # [style]
 # 字体；候选项、候选窗口的行为、布局及样式
 style:
-  color_scheme: jianchun      # 默认配色方案
+  color_scheme: purity_of_form_custom      # 默认配色方案
+  # color_scheme_dark: nord                # 深色模式下，Weasel 的配色方案，Windows 10 1809+ 可用
 
   # 全局字体
   # 格式：字体1:起始码位:结束码位:字重:字形,字体2……，字体会依次 fallback
@@ -53,9 +51,9 @@ style:
   font_face: "Segoe UI Emoji, Microsoft YaHei, SF Pro, Noto Color Emoji"
   label_font_face: "Microsoft YaHei"       # 标签字体
   comment_font_face: "Microsoft YaHei"     # 注释字体
-  font_point: 12                           # 全局字体字号
-  label_font_point: 11                     # 标签字体字号，不设定 fallback 到 font_point
-  comment_font_point: 11                   # 注释字体字号，不设定 fallback 到 font_point
+  font_point: 14                           # 全局字体字号
+  label_font_point: 14                     # 标签字体字号，不设定 fallback 到 font_point
+  comment_font_point: 13                   # 注释字体字号，不设定 fallback 到 font_point
 
   inline_preedit: true                     # 行内显示预编辑区：true；false
   preedit_type: composition                # 预编辑区内容：composition（编码）； preview（选中的候选）；preview_all（全部候选）
@@ -69,109 +67,1148 @@ style:
   vertical_auto_reverse: false             # 文本竖排模式下，候选窗口位于光标上方时倒序排列：true；false
 
   label_format: "%s"                       # 标签字符：例如 %s. 效果为 1. 2. 3. ....
-  mark_text: ""                           # 标记字符，显示在选中的候选标签前，需要在配色方案中指定颜色；如该项为空字符串 "" 而配色方案中 hilited_mark_color 非透明色，则显示 Windows 11 输入法风格标记
+  mark_text: ""                            # 标记字符，显示在选中的候选标签前，需要在配色方案中指定颜色；如该项为空字符串 "" 而配色方案中 hilited_mark_color 非透明色，则显示 Windows 11 输入法风格标记
   ascii_tip_follow_cursor: false           # 切换 ASCII 模式时，提示跟随鼠标，而非输入光标
   enhanced_position: true                  # 无法定位候选框时，在窗口左上角显示候选框：true；false
   display_tray_icon: false                 # 托盘显示独立于语言栏的额外图标：true；false
   antialias_mode: default                  # 次像素反锯齿设定：default；force_dword；cleartype；grayscale；aliased
   candidate_abbreviate_length: 30          # 候选项略写，超过此数字则用省略号代替。设置为 0 则不启用此功能
-  # mouse_hover_ms: 0                      # ! 已弃用。鼠标悬停选词响应时间（ms），设置为 0 时禁用该功能
-  hover_type: semi_hilite                  # 鼠标在候选窗口悬停时：none（无动作）；hilite（选中鼠标下的候选）；semi_hilite（高亮鼠标下的候选）
+  mouse_hover_ms: 0                        # ! 已弃用。鼠标悬停选词响应时间（ms），设置为 0 时禁用该功能
+  hover_type: none                         # 鼠标在候选窗口悬停时：none（无动作）；hilite（选中鼠标下的候选）；semi_hilite（高亮鼠标下的候选）
 
   paging_on_scroll: true                   # 在候选窗口上滑动滚轮的行为：true（翻页）；false （选中下一个候选）
   click_to_capture: false                  # 鼠标点击候选项，创建截图：true；false
 
   layout:
-    baseline: 0                            # 0 - 100，字号百分比。<https://github.com/rime/weasel/pull/1177>
-    linespacing: 0                         # 0 - 100，字号百分比。与 baseline 一同设置可解决字体跳动问题，设置为 0 为禁用
-    align_type: bottom                    # 标签、候选文字、注解文字之间的相对对齐方式：top ; center ; bottom
+    baseline: 0                            # 字号百分比，与 linespacing 一同设置可解决字体跳动问题，设置为 0 为禁用
+    linespacing: 0                         # 字号百分比，参考 <https://github.com/rime/weasel/pull/1177>
+    align_type: center                     # 标签、候选文字、注解文字之间的相对对齐方式：top ; center ; bottom
     max_height: 600                        # 候选框最大高度，文本竖排模式下如高度超此尺寸则换列显示候选，设置为 0 不启用此功能
     max_width: 0                           # 候选框最大宽度，horizontal 布局如宽超此尺寸则换行显示候选，设置为 0 不启用此功能
     min_height: 0                          # 候选框最小高度
-    min_width: 0                          # 候选框最小宽度
-    border_width: 1                       # 边框宽度；又名 border                      
-    margin_x: 4                            # 主体元素和候选框的左右边距；为负值时，不显示候选框
-    margin_y: 4                            # 主体元素的上下边距；为负值时，不显示候选框
+    min_width: 10                          # 候选框最小宽度
+    border_width: 2                        # 边框宽度；又名 border
+    margin_x: 8                            # 主体元素和候选框的左右边距；为负值时，不显示候选框
+    margin_y: 8                            # 主体元素的上下边距；为负值时，不显示候选框
     spacing: 13                            # inline_preedit 为否时，编码区域和候选区域的间距
-    candidate_spacing: 12                  # 候选项之间的间距
-    line_spacing: 5
-    hilite_spacing: 5                      # 候选项和相应标签的间距
-    hilite_padding: 5                      # 高亮区域和内部文字的间距，影响高亮区域大小
+    candidate_spacing: 22                  # 候选项之间的间距
+    hilite_spacing: 6                      # 候选项和相应标签的间距
+    hilite_padding: 8                      # 高亮区域和内部文字的间距，影响高亮区域大小
     # hilite_padding_x: 8                  # 高亮区域和内部文字的左右间距，如无特殊指定则依 hilite_padding 设置
     # hilite_padding_y: 8                  # 高亮区域和内部文字的上下间距，如无特殊指定则依 hilite_padding 设置
     shadow_radius: 0                       # 阴影区域半径，为 0 不显示阴影；需要同时在配色方案中指定非透明的阴影颜色
     shadow_offset_x: 4                     # 阴影左右偏移距离
     shadow_offset_y: 4                     # 阴影上下偏移距离
-    corner_radius: 6                       # 候选窗口圆角半径
-    round_corner: 6                        # 候选背景色块圆角半径，又名 hilited_corner_radius
+    corner_radius: 8                       # 候选窗口圆角半径
+    round_corner: 8                        # 候选背景色块圆角半径，又名 hilited_corner_radius
     # type: vertical                       # 布局设置，效果和 style 下的设置相同：
                                            # horizontal（横向）；vertical（竖向） ; vertical_text（竖排文本） ; vertical+fullscreen（全屏） ; horizontal+fullscreen（横向全屏）
+# [End of <style>]
+
+# [preset_color_schemes]
+# 配色设定
+# 在小狼毫用户目录新建 preview 文件夹，将自定义皮肤的截图重命名为 color_scheme_<name>.png 放入此文件夹，可以在「输入法设定」中看到自定义皮肤效果
+
+# 小狼毫配色在线设计：
+# [RIME 西米](https://fxliang.github.io/RimeSeeMe/)
+# [小狼毫配色详解](https://github.com/rime/weasel/wiki/定制小狼毫配色)
+
 preset_color_schemes:
-  jianchun:
-    name: 简纯
-    author: amzxyz
-    back_color: '0xf2f2f2'
-    border_color: '0xCE7539'
-    text_color: '0x3c647e'
-    hilited_text_color: '0x3c647e'
-    hilited_back_color: '0x797954'
-    hilited_comment_text_color: '0xffffff'
-    hilited_candidate_text_color: '0xffffff'
-    hilited_candidate_back_color: '0xCE7539'
-    hilited_label_color: '0xdedede'
-    candidate_text_color: '0x000000'
-    comment_text_color: '0x000000'
-    label_color: '0x91897e'
+  # 以下是一个配色方案示例
+  nord:                                      # 在 `style/color_schema` 指定的配色方案值
+    name: "远山／Nord"                       # 方案设置中显示的配色名称
+    author: Mirtle                           # 配色作者名称
+    color_format: rgba                       # 颜色格式：argb（0xaarrggbb）；rgba（0xrrggbbaa）；abgr（0xaabbggrr 默认）
+    # 默认配色
+    text_color: 0x2E3440                     # 文字
+    shadow_color: 0x000000b4                 # 阴影
+    label_color: 0x4C566A                    # 标签
+    comment_text_color: 0xD08770             # 注释
+    border_color: 0xECEFF4                   # 边框
+    back_color: 0xECEFF4                     # 背景
+    # 普通候选项配色
+    candidate_back_color: 0xECEFF4           # 背景
+    # candidate_border_color:                # 边框
+    # candidate_shadow_color:                # 阴影
+    candidate_text_color: 0x2E3440           # 文字
+    # 编码区域配色
+    hilited_text_color: 0x000000             # 文字
+    hilited_back_color: 0xEBCB8B             # 背景
+    # hilited_shadow_color:                  # 阴影
+    # 选中的候选区域配色
+    hilited_mark_color: 0xBF616A             # 标签前的标记
+    hilited_label_color: 0x4C566A            # 标签
+    hilited_comment_text_color: 0xBF616A     # 注释
+    hilited_candidate_text_color: 0x2E3440   # 文字
+    hilited_candidate_border_color: 0x8FBCBB # 边框
+    hilited_candidate_back_color: 0x8FBCBB   # 背景
+    # hilited_candidate_shadow_color:        # 阴影
+    # inline_preedit: false 时翻页箭头颜色，不设置则不显示箭头
+    # nextpage_color: 0x000000               # 下一页
+    # prevpage_color: 0x000000               # 上一页
 
-  win11_light:
-    name: "Win11浅色 / Win11light"
-    text_color: 0x191919
-    label_color: 0x191919
-    hilited_label_color: 0x191919
-    back_color: 0xf9f9f9
-    border_color: 0x009e5a00
-    hilited_mark_color: 0xc06700
-    hilited_candidate_back_color: 0xf0f0f0
-    shadow_color: 0x20000000
+  # 修改自鼠须管配色方案
+  purity_of_form_custom:
+    name: "純粹的形式／Purity of Form Custom"
+    author: 雨過之後、佛振
+    text_color: 0x808080
+    back_color: 0x545554
+    label_color: 0xBBBBBB
+    border_color: 0x545554
+    shadow_color: 0xb4000000
+    comment_text_color: 0x808080
+    candidate_text_color: 0xEEEEEE
+    hilited_text_color: 0xEEEEEE
+    hilited_comment_text_color: 0x808080
+    hilited_candidate_back_color: 0xE3E3E3
+    hilited_candidate_border_color: 0xE3E3E3
+    hilited_candidate_label_color: 0x4C4C4C
+    hilited_candidate_text_color: 0x000000
 
-  win11_dark:
-    name: "Win11暗色 / Win11Dark"
-    text_color: 0xf9f9f9
-    label_color: 0xf9f9f9
-    back_color: 0x2C2C2C
-    hilited_label_color: 0xf9f9f9
-    border_color: 0x002C2C2C
-    hilited_mark_color: 0xFFC24C
-    hilited_candidate_back_color: 0x383838
-    shadow_color: 0x20000000
+  # 以下为 weasel 自带的配色方案
+  # source: <https://github.com/rime/weasel/blob/master/output/data/weasel.yaml>
 
-  mac_light:
-    name: "Mac 白"
+  aqua:
+    name: 碧水／Aqua
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0x000000
+    back_color: 0xeceeee
+    shadow_color: 0x00000000
+    border_color: 0xe0e0e0
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xd4d4d4
+    hilited_shadow_color: 0x00000000
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0xfa3a0a
+    hilited_candidate_shadow_color: 0x00000000
+    candidate_text_color: 0x000000
+    candidate_back_color: 0xeceeee
+    candidate_shadow_color: 0x00000000
+
+  azure:
+    name: 青天／Azure
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0xffe8ca
+    candidate_text_color: 0xfff8ee
+    back_color: 0x8b4e01
+    border_color: 0x8b4e01
+    hilited_text_color: 0xfff8ee
+    hilited_back_color: 0x8b4e01
+    hilited_candidate_text_color: 0x7ffeff
+    hilited_candidate_back_color: 0xa95e01
+    comment_text_color: 0xc69664
+
+  luna:
+    name: 明月／Luna
+    author: 佛振 <chen.sst@gmail.com>
     text_color: 0x000000
     back_color: 0xffffff
-    border_color: 0xe9e9e9
-    label_color: 0x999999
+    border_color: 0xcccccc
+    hilited_text_color: 0x000000
+    hilited_back_color: 0x7fffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0x000000
+
+  ink:
+    name: 墨池／Ink
+    author: 佛振 <chen.sst@gmail.com>
+    candidate_format: "%c %@ "               # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    font_point: 16                           # 候选文字大小
+    label_font_point: 14                     # 候选编号大小
+    corner_radius: 5                         # 窗口圆角
+    line_spacing: 10                         # 行间距(适用于竖排)
+    text_color: 0x5a5a5a                     # 拼音等提示文字颜色
+    back_color: 0xeeffffff                   # 候选条背景色
+    candidate_text_color: 0x000000           # 第一候选项文字颜色
+    hilited_text_color: 0x000000             # 高亮拼音 (需要开启内嵌编码)
+    hilited_candidate_text_color: 0xffffff   # 第一候选项文字颜色
+    hilited_candidate_back_color: 0xcc000000 # 候选文字背景色
+    comment_text_color: 0x5a5a5a             # 拼音等提示文字颜色
+    hilited_comment_text_color: 0x808080     # 注解文字高亮
+
+  lost_temple:
+    name: 孤寺／Lost Temple
+    author: 佛振 <chen.sst@gmail.com>, based on ir_black
+    text_color: 0xe8f3f6
+    back_color: 0x444444
+    border_color: 0x444444
+    hilited_text_color: 0x82e6ca
+    hilited_back_color: 0x222222
+    hilited_candidate_text_color: 0x000000
+    hilited_candidate_back_color: 0x82e6ca
+
+  dark_temple:
+    name: 暗堂／Dark Temple
+    author: 佛振 <chen.sst@gmail.com>, based on ir_black
+    text_color: 0x92f6da
+    candidate_text_color: 0xd8e3e6
+    back_color: 0x222222
+    border_color: 0x222222
+    hilited_text_color: 0xffcf9a
+    hilited_back_color: 0x222222
+    hilited_candidate_text_color: 0x92f6da
+    hilited_candidate_back_color: 0x333333
+    comment_text_color: 0x606cff
+
+  starcraft:
+    name: 星際我爭霸／StarCraft
+    author: Contralisk <contralisk@gmail.com>, original artwork by Blizzard Entertainment
+    text_color: 0xccaa88
+    candidate_text_color: 0x30bb55
+    back_color: 0x000000
+    border_color: 0x1010a0
+    hilited_text_color: 0xfecb96
+    hilited_back_color: 0x000000
+    hilited_candidate_text_color: 0x60ffa8
+    hilited_candidate_back_color: 0x000000
+
+  google:
+    name: 谷歌／Google
+    candidate_format: "%c %@ "               # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    font_point: 16                           # 候选文字大小
+    label_font_point: 15                     # 候选编号大小
+    corner_radius: 6                         # 窗口圆角
+    line_spacing: 10                         # 行间距(适用于竖排)
+    text_color: 0x666666                     # 拼音行文字颜色
+    candidate_text_color: 0x000000           # 预选项文字颜色
+    back_color: 0xFFFFFF                     # 候选条背景色
+    border_color: 0xE2E2E2                   # 边框
+    hilited_text_color: 0x000000             # 高亮拼音 (需要开启内嵌编码)
+    hilited_back_color: 0xFFFFFF             # 第一候选项背景背景色
+    hilited_candidate_text_color: 0xffffff   # 第一候选项文字颜色
+    hilited_candidate_back_color: 0xCE7539   # 候选文字背景色
+    comment_text_color: 0x6D6D6D             # 拼音等提示文字颜色
+    hilited_comment_text_color: 0xEBC6B0     # 注解文字高亮
+    hilited_candidate_label_color: 0xfafafa  # 第一候选项编号颜色
+
+  solarized_rock:
+    name: 日光石／Solarized Rock
+    author: "Aben <tntaben@gmail.com>, based on Ethan Schoonover's Solarized color scheme"
+    candidate_format: "%c %@ "               # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    corner_radius: 6                         # 窗口圆角
+    font_point: 16                           # 候选文字大小
+    label_font_point: 15                     # 候选编号大小
+    line_spacing: 10                         # 行间距(适用于竖排)
+    text_color: 0x8236d3                     # 拼音行文字颜色
+    back_color: 0x362b00                     # 候选条背景色，24位色值，16进制，BGR顺序
+    candidate_text_color: 0x969483           # 预选项文字颜色
+    comment_text_color: 0xc098a12a           # 拼音等提示文字颜色
+    hilited_text_color: 0x98a12a             # 高亮拼音 (需要开启内嵌编码)
+    hilited_back_color: 0x444444             # 第一候选项背景背景色
+    hilited_candidate_label_color: 0xfafafa  # 第一候选项编号颜色
+    hilited_candidate_back_color: 0x8236d3   # 候选文字背景色
+    hilited_candidate_text_color: 0xffffff   # 第一候选项文字颜色
+    hilited_comment_text_color: 0x362b00     # 注解文字高亮
+
+  tintin:
+    name: "丁丁／ Tintin"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0xd99500
+    border_color: 0xd99500
+    label_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_text_color: 0xf7d891
+    hilited_back_color: 0xd99500
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x2164f1
+
+  dota_2:
+    name: "DOTA 2"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x120f10
+    border_color: 0x120f10
+    label_color: 0x5c758f
+    hilited_text_color: 0x1841dd
+    hilited_back_color: 0x120f10
+    candidate_text_color: 0x5c758f
+    comment_text_color: 0x5c758f
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x1841dd
+
+  brasil:
+    name: "笆悉／Brasil"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x559311
+    border_color: 0x559311
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x7d3617
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x16c7f7
+
+  doraemon:
+    name: "銅鑼衛門／Doraemon"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x1200e5
+    back_color: 0xffffff
+    border_color: 0xe89f00
+    label_color: 0xe89f00
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x1200e5
+    candidate_text_color: 0xe89f00
+    comment_text_color: 0xe89f00
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xe89f00
+
+  espagna:
+    name: "埃斯巴尼亞／España"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x230dc3
+    border_color: 0x230dc3
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x2cb5f7
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x2cb5f7
+
+  gholabok:
+    name: "胡蘿菔／Gholabok"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x2939e8
+    border_color: 0x2939e8
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x437b00
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x3d6ded
+
+  kuma_shuzboz:
+    name: "熊出沒／Kuma Shuzboz"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x000000
+    back_color: 0x2db6f8
+    border_color: 0x2db6f8
+    label_color: 0xffffff
+    hilited_text_color: 0x2db6f8
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x000000
+
+  kuon:
+    name: "琨／Kuon"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x70b33e
+    border_color: 0x70b33e
+    label_color: 0xffffff
+    hilited_text_color: 0x70b33e
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0x70b33e
+    hilited_comment_text_color: 0x70b33e
+    hilited_candidate_back_color: 0xffffff
+
+  macau:
+    name: "澳門／Macau"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x00d9ff
+    back_color: 0x81a300
+    border_color: 0x81a300
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x00d9ff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0x00d9ff
+    hilited_comment_text_color: 0x00d9ff
+    hilited_candidate_back_color: 0xffffff
+
+  nba:
+    name: "NBA"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0xb76a00
+    border_color: 0xb76a00
+    label_color: 0xffffff
+    hilited_text_color: 0x541ed7
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x541ed7
+
+  ps4:
+    name: "遊驛四／PS4"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x000000
+    border_color: 0x000000
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x575759
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xe89f00
+
+  skype:
+    name: "斯蓋普／Skype"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0xefad00
+    border_color: 0xefad00
+    label_color: 0xffffff
+    hilited_text_color: 0xefad00
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xefad00
+    hilited_comment_text_color: 0xefad00
+    hilited_candidate_back_color: 0xffffff
+
+  xbox_silver:
+    name: "銀色叉盒／Xbox Silver"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x1fc28d
+    back_color: 0xefeeee
+    border_color: 0xefeeee
+    label_color: 0x5bf0b5
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x5bf0b5
+    candidate_text_color: 0x1fc28d
+    comment_text_color: 0x1fc28d
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x448c28
+
+  youtube:
+    name: "YouTube"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x000000
+    back_color: 0xdedede
+    border_color: 0xdedede
+    label_color: 0x000000
+    hilited_text_color: 0x230dc3
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0x000000
+    comment_text_color: 0x000000
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x230dc3
+
+  so_young:
+    name: "致青春／So Young"
+    author: "五磅兔 <zcunlin@foxmail.com>"
+    text_color: 0x8236d3
+    back_color: 0xe3f6fd
+    border_color: 0xd5e8ee
+    label_color: 0xa1a193
+    candidate_text_color: 0x837b65
+    comment_text_color: 0xd28b26
+    hilited_text_color: 0x969483
+    hilited_back_color: 0xd5e8ee
+    hilited_candidate_text_color: 0xd5e8ee
+    hilited_comment_text_color: 0xd5e8ee
+    hilited_candidate_back_color: 0x98a12a
+
+  smurfs:
+    name: "藍精靈／Smurfs"
+    author: "skoj <skoj@qq.com>"
+    text_color: 0xffffff
+    back_color: 0xbf7817
+    border_color: 0xf5ede0
+    label_color: 0xbf7817
+    hilited_text_color: 0xdbbc6d
+    hilited_back_color: 0xbf7817
+    candidate_text_color: 0xf6f6f6
+    comment_text_color: 0xf6f6f6
+    hilited_candidate_text_color: 0xf6f6f6
+    hilited_comment_text_color: 0xf6f6f6
+    hilited_candidate_back_color: 0xdbbc6d
+
+  wii:
+    name: "Wii"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x575759
+    back_color: 0xefefef
+    border_color: 0xefefef
+    label_color: 0xcac9c8
+    hilited_text_color: 0xffcc33
+    hilited_back_color: 0xefefef
+    candidate_text_color: 0x575759
+    comment_text_color: 0xcac9c8
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xffcc33
+
+  android:
+    name: "安卓／Android"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x99731c
+    border_color: 0x99731c
+    label_color: 0xc18835
+    hilited_text_color: 0x50c4a8
+    hilited_back_color: 0x99731c
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x50c4a8
+
+  cool_breeze:
+    name: "清風／Cool Breeze"
+    author: "skoj <skoj@qq.com>"
+    text_color: 0x0000FF
+    back_color: 0xFFFBFB
+    border_color: 0xFFAAAA
+    hilited_text_color: 0x0000CE
+    hilited_back_color: 0xFFFBFB
+    candidate_text_color: 0x009100
+    hilited_candidate_text_color: 0x6F003A
+    hilited_candidate_back_color: 0xFFD6AC
+
+  google_plus:
+    name: "Google+"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xcac9c8
+    back_color: 0xffffff
+    border_color: 0x394bdd
+    label_color: 0xcac9c8
+    hilited_text_color: 0x394bdd
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0x394bdd
+    comment_text_color: 0xcac9c8
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x394bdd
+
+  modern_warfare:
+    name: "現代戰爭／Modern Warfare"
+    author: P1461
+    text_color: 0x14bc70
+    back_color: 0x0a1b0d
+    border_color: 0x4bad83
+    hilited_text_color: 0xfbfdfc
+    hilited_back_color: 0x030e06
+    candidate_text_color: 0xabfedc
+    comment_text_color: 0xfcfdfb
+    hilited_candidate_text_color: 0xabfedc
+    hilited_candidate_back_color: 0x676f63
+
+  brisk:
+    name: "輕盈／Brisk"
+    author: "skoj <skoj@qq.com>"
+    text_color: 0x2238dc
+    back_color: 0xffffff
+    border_color: 0x333333
+    hilited_text_color: 0x2238dc
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0x575757
+    hilited_candidate_text_color: 0x2238dc
+    hilited_candidate_back_color: 0xffffff
+
+  starcraft_ii:
+    name: "星际争霸Ⅱ／StarCraft Ⅱ"
+    author: "Patricivs <ipatrickmac@me.com>"
+    candidate_format: "%c %@ "               # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    font_point: 16                           # 候选文字大小
+    label_font_point: 14                     # 候选编号大小
+    corner_radius: 5                         # 窗口圆角
+    line_spacing: 10                         # 行间距(适用于竖排)
+    text_color: 0xccaa88                     # 拼音等提示文字颜色
+    candidate_text_color: 0x30bb55           # 第一候选项文字颜色
+    back_color: 0xee000000                   # 候选条背景色
+    border_color: 0x1010a0                   # 边框色
+    hilited_text_color: 0xfecb96             # 高亮拼音 (需要开启内嵌编码)
+    hilited_back_color: 0x000000             # 第一候选项背景背景色
+    hilited_candidate_text_color: 0x70ffaf   # 第一候选项文字颜色
+    hilited_candidate_back_color: 0x000000   # 候选文字背景色
+    comment_text_color: 0x1010d0             # 拼音等提示文字颜色
+    hilited_comment_text_color: 0x1010f0     # 注解文字高亮
+
+  steam:
+    name: "Steam"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xcd8c52
+    back_color: 0x141617
+    border_color: 0x353638
+    label_color: 0xffffff
+    hilited_text_color: 0xc9cfd1
+    hilited_back_color: 0x141617
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xa7a7a9
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xa7a7a9
+    hilited_candidate_back_color: 0x594231
+
+  flypy:
+    # description: |
+    #   小鹤飞扬：白底蓝字，红色高亮。
+    #   根据小鹤双拼官网图片制作
+    #   http://www.flypy.com/images/mr.png
+    name: "小鹤飞扬／flypy"
+    author: "Pal.lxk <Pal.lxk@gmail.com>"
+    text_color: 0x000000
+    back_color: 0xffffff
+    border_color: 0xc6c6c6
+    label_color: 0xff8000
+    hilited_text_color: 0xff8000
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xff8000
+    comment_text_color: 0xff8000
+    hilited_candidate_text_color: 0x0000b0
+    hilited_comment_text_color: 0x0000b0
+    hilited_candidate_back_color: 0xffffff
+
+  metroblue:
+    name: "现代蓝／Metro Blue"
+    author: "Prcuvu <prcuvu@gmail.com>"
+    text_color: 0x000000
+    back_color: 0xffffff
+    border_color: 0xd77800
+    label_color: 0x838383
     hilited_text_color: 0x000000
     hilited_back_color: 0xffffff
     candidate_text_color: 0x000000
-    comment_text_color: 0x999999
+    comment_text_color: 0x000000
     hilited_candidate_text_color: 0xffffff
-    hilited_comment_text_color: 0xdddddd
-    hilited_comment_text_color: 0xdddddd
-    hilited_candidate_back_color: 16740656
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xd77800
     hilited_label_color: 0xffffff
 
-  wechat:
-    name: "微信／Wechat"
-    text_color: 0x424242
-    label_color: 0x999999
+  psionics:
+    name: 幽能／Psionics
+    author: 雨過之後、佛振
+    text_color: 0xc2c2c2
+    back_color: 0x444444
+    border_color: 0x444444
+    candidate_text_color: 0xeeeeee
+    hilited_text_color: 0xeeeeee
+    hilited_back_color: 0x444444
+    hilited_candidate_label_color: 0xfafafa
+    hilited_candidate_text_color: 0xfafafa
+    hilited_candidate_back_color: 0xd8bf00
+    comment_text_color: 0x808080
+    hilited_comment_text_color: 0x444444
+
+  win10:
+    candidate_format: "%c %@  "               # 如果是竖排建议改为 "%c\u2005%@"
+    font_point: 17                            # 候选文字大小
+    label_font_point: 16                      # 候选编号大小
+    corner_radius: 0                          # 候选条圆角
+    border_width: 6                           # 窗口左右宽度
+    border_height: 6                          # 窗口左右高度
+    margin_x: 12                              # 字起始距左边距离
+    margin_y: 12                              # 字上下边距
+    spacing: 10                               # 间距
+    candidate_spacing: 24                     # 候选字间隔
+    hilite_spacing: 8                         # 序号和候选字之间的间隔
+    hilite_padding: 12                        # 候选字背景色色块高度 若想候选字背景色块无边界填充候选框，仅需其高度和候选字上下边距一致即可
+    round_corner: 0                           # 候选字背景色块圆角幅度
+    line_spacing: 10                          # 行间距(适用于竖排)
+    candidate_text_color: 0x000000            # 预选项文字颜色
+    comment_text_color: 0x888888              # 拼音等提示文字颜色
+    text_color: 0x000000                      # 拼音行文字颜色
+    back_color: 0xffffff                      # 候选条背景色，24位色值，16进制，BGR顺序
+    hilited_text_color: 0x000000              # 高亮拼音 (需要开启内嵌编码)
+    hilited_back_color: 0xffffff              # 第一候选项背景背景色
+    hilited_candidate_text_color: 0xffffff    # 第一候选项文字颜色
+    hilited_candidate_back_color: 0xcc8f29    # 候选文字背景色
+    hilited_comment_text_color: 0xffffff      # 注解文字高亮
+    hilited_label_color: 0xffffff             # 已选字的数字的颜色
+    label_color: 0x888888                     # 预选栏编号颜色
+
+  solarized_dark:
+    name: 夜光石
+    candidate_format: "%c %@ "                # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    corner_radius: 6                          # 窗口圆角
+    font_point: 16                            # 候选文字大小
+    label_font_point: 15                      # 候选编号大小
+    line_spacing: 10                          # 行间距(适用于竖排)
+    text_color: 0xA1A095                      # 拼音行文字颜色
+    border_color: 0xf02A1F00                  # 边框颜色
+    label_color: 0xCC8947                     # 预选栏编号颜色
+    back_color: 0xf0352A0A                    # 候选条背景色，24位色值，16进制，BGR顺序
+    candidate_text_color: 0x989F52            # 预选项文字颜色
+    comment_text_color: 0x289989              # 拼音等提示文字颜色
+    hilited_text_color: 0x2C8BAE              # 高亮拼音 (需要开启内嵌编码)
+    hilited_back_color: 0x444444              # 第一候选项背景背景色
+    hilited_candidate_label_color: 0x2566C6   # 第一候选项编号颜色
+    hilited_candidate_back_color: 0xD7E8ED    # 候选文字背景色
+    hilited_candidate_text_color: 0x3942CB    # 第一候选项文字颜色
+    hilited_comment_text_color: 0x8144C2      # 注解文字高亮
+
+  apathy:
+    name: 冷漠
+    back_color: 0xFFFFFF                      # 候选条背景色，24位色值，16进制，BGR顺序
+    border_height: 0                          # 窗口上下高度，大于圆角半径才生效
+    border_width: 8                           # 窗口左右宽度
+    line_spacing: 10                          # 行间距(适用于竖排)
+    candidate_format: "%c %@ "                 # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    comment_text_color: 0x999999              # 拼音等提示文字颜色
+    corner_radius: 5                          # 窗口圆角
+    font_point: 17                            # 候选文字大小
+    hilited_candidate_back_color: 0xFFF0E4    # 候选文字背景色
+    hilited_candidate_text_color: 0xEE6E00    # 第一候选项文字颜色
+    inline_preedit: true
+    label_font_point: 12                      # 候选编号大小
+    text_color: 0x424242                      # 拼音行文字颜色
+
+  milan:
+    name: 米兰
+    candidate_format: "%c %@ "                # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    font_point: 16                            # 候选文字大小
+    label_font_point: 14                      # 候选编号大小
+    line_spacing: 10                          # 行间距(适用于竖排)
+    border_height: 4                          # 窗口上下高度，大于圆角半径才生效
+    border_width: 4                           # 窗口左右宽度，大于圆角半径才生效
+    corner_radius: 5                          # 窗口圆角
+    back_color: 0xFFFFFF                      # 候选条背景色
+    comment_text_color: 0x999999              # 拼音等提示文字颜色
+    hilited_candidate_back_color: 0xF5803B    # 候选文字背景色
+    hilited_candidate_text_color: 0xFFFFFF    # 第一候选项文字颜色
+    text_color: 0x424242                      # 拼音行文字颜色
+
+  purity:
+    name: 纯洁
+    candidate_format: "%c %@ "                # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    font_point: 16                            # 候选文字大小
+    label_font_point: 14                      # 候选编号大小
+    corner_radius: 5                          # 窗口圆角
+    line_spacing: 10                          # 行间距(适用于竖排)
+    text_color: 0xc2c2c2                      # 拼音等提示文字颜色
+    back_color: 0x444444                      # 候选条背景色
+    candidate_text_color: 0xeeeeee            # 第一候选项文字颜色
+    hilited_text_color: 0xeeeeee              # 高亮拼音 (需要开启内嵌编码)
+    hilited_back_color: 0x444444              # 第一候选项背景背景色
+    hilited_candidate_text_color: 0x000000    # 第一候选项文字颜色
+    hilited_candidate_back_color: 0xfafafa    # 候选文字背景色
+    comment_text_color: 0x808080              # 拼音等提示文字颜色
+
+  nord_light:
+    name: 北方浅色
+    candidate_format: "%c %@ "                # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    font_point: 16                            # 候选文字大小
+    label_font_point: 14                      # 候选编号大小
+    corner_radius: 5                          # 窗口圆角
+    line_spacing: 10                          # 行间距(适用于竖排)
+    back_color: 0xF4EFEC                      # 候选条背景色
+    border_color: 0xF4EFEC                    # 边框色
+    candidate_text_color: 0xC1A181            # 第一候选项文字颜色
+    comment_text_color: 0xD0C088              # 拼音等提示文字颜色
+    hilited_back_color: 0xF0E9E5              # 第一候选项背景背景色
+    hilited_candidate_back_color: 0xE9DED8    # 候选文字背景色
+    hilited_candidate_text_color: 0xAC815E    # 第一候选项文字颜色
+    hilited_text_color: 0xAD8EB4              # 高亮拼音 (需要开启内嵌编码)
+    text_color: 0x7087D0                      # 拼音等提示文字颜色
+
+  nord_dark:
+    name: 北方深色
+    candidate_format: "%c %@ "                # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
+    font_point: 16                            # 候选文字大小
+    label_font_point: 14                      # 候选编号大小
+    corner_radius: 5                          # 窗口圆角
+    line_spacing: 10                          # 行间距(适用于竖排)
+    back_color: 0x473A33                      # 候选条背景色
+    border_color: 0x473A33                    # 边框色
+    candidate_text_color: 0xF5D887            # 第一候选项文字颜色
+    comment_text_color: 0xE6B687              # 拼音等提示文字颜色
+    hilited_back_color: 0x473A33              # 第一候选项背景背景色
+    hilited_candidate_back_color: 0x5D4C43    # 候选文字背景色
+    hilited_candidate_text_color: 0xC0E077    # 第一候选项文字颜色
+    hilited_text_color: 0x6EC8F5              # 高亮拼音 (需要开启内嵌编码)
+    text_color: 0x78E8F0                      # 拼音等提示文字颜色
+
+  roseo_maple:
+    name: 玫枫 / Roseo Maple
+    author: "KyleBing <http://kylebing.cn>"
+    alpha: 1.0                                # 候选窗口透明度：符点型数据，小数点形式，不然出错无法正常显示皮肤
+    border_height: 5                          # 边距 - 面板上下
+    border_width: 0                           # 宽度 - 边框
+    border_color: 0xffffff                    # 颜色 - 边框
+    back_color: 0xF4F4F6                      # 颜色 - 面板背景
+    label_color: 0xaaaaaa                     # 颜色 - 候选序号
+    # font_face: PingFang SC Semibold         # 字体 - 候选文字
+    font_point: 18                            # 字体大小 - 候选
+    # label_font_face: Skia                   # 字体 - 候选数字
+    # label_font_point: 18                    # 字体大小 - 候选序号
+    corner_radius: 5                          # 候选框圆角大小
+
+    # %c 是候选序号 %@ 是候选词
+    candidate_format: "%c %@ "                # 候选词格式，后面多个空格是为了增加候选词之间的距离
+
+    line_spacing: 5                           # horizontal 为 false 时，上下候选的间隔大小
+    base_offset: 0                            # 文字基线调整
+
+    preedit_back_color: 0x364572
+    hilited_corner_radius: 5                  # 圆角 - 首选候选词
+    hilited_candidate_text_color: 0x4F11FA    # 颜色 - 首选候选词 - 文字
+    hilited_candidate_back_color: 0xEDEDF9    # 颜色 - 首选候选词 - 背景  8位的前两位是颜色透明度，00就是透明，FF就是不透明
+    hilited_candidate_label_color: 0x884F11FA # 颜色 - 首选候选词 - 序号
+    hilited_comment_text_color: 0xF19C38      # 颜色 - 首选候选词 - 提示编码
+    candidate_text_color: 0x222222            # 颜色 - 其它候选词 - 文字
+    comment_text_color: 0x5AC461              # 颜色 - 其它候选词 - 提示编码
+    comment_font_face: PingFang SC            # 字体 - 候选词编码的提示
+    comment_font_point: 16                    # 字体大小 - 候选词编码的提示
+
+    inline_preedit: true                      # 输入的编码是否直接写入到输入框中，如果为 false，未上屏的编码就会写在候选框中
+    spacing: 5                                # 当 inline_preedit 为 false 时，编码会出现在候选面板中，该值控制编码与候选词之间的距离
+    # inline_preedit 为 false 时
+    hilited_text_color: 0x8E8E93              # 颜色 - 输入中 - 编码
+    hilited_back_color: 0xEFEFF4              # 颜色 - 输入中 - 背景
+
+  calm:
+    name: "安静"
+    border_height: 5
+    border_width: 10
+    border_color: 0x8E8E93
+    back_color: 0xEFEFF4
+    label_color: 0x8E8E93
+    font_point: 20
+    label_font_point: 18
+    corner_radius: 5
+    candidate_format: "%c %@ "
+    line_spacing: 5
+    hilited_candidate_text_color: 0x000000
+    hilited_candidate_back_color: 0x00ffffff
+    hilited_candidate_label_color: 0x888888
+    hilited_comment_text_color: 0xF19C38
+    candidate_text_color: 0x888888
+    comment_text_color: 0x5AC461
+    inline_preedit: true
+    spacing: 5
+    hilited_text_color: 0x8E8E93
+    hilited_back_color: 0xEFEFF4
+
+  eucalyptus:
+    author: "ID;Peace B"
+    corner_radius: 5
     back_color: 0xFFFFFF
-    border_color: 0xFFFFFF
-    comment_text_color: 0x999999
-    candidate_text_color: 0x3c3c3c
+    border_color: 0xC9B881
+    candidate_text_color: 0x8C7662
+    comment_text_color: 0x8C7662
+    hilited_back_color: 0xD5E2F2
+    hilited_candidate_back_color: 0xD1A78E
+    hilited_candidate_text_color: 0xFFFFFF
     hilited_comment_text_color: 0xFFFFFF
-    hilited_back_color: 0x79af22
+    name: "尤加利"
+    text_color: 0x2B1007
+
+  blackpink:
+    author: swwrww
+    corner_radius: 5
+    back_color: 0x1e1e1e
+    border_color: 0xff303030
+    candidate_text_color: 0xaaa6f0
+    comment_text_color: 0xaaa6f0
+    hilited_back_color: 0xaaa6f0
+    hilited_candidate_back_color: 0xA996F1
+    hilited_candidate_text_color: 0x1e1e1e
+    hilited_comment_text_color: 0x1e1e1e
+    hilited_label_color: 0x1e1e1e
+    hilited_mark_color: 0xf9f9f9
     hilited_text_color: 0xFFFFFF
-    hilited_label_color: 0xFFFFFF
-    hilited_candidate_back_color: 0x79af22
+    label_color: 0xaaa6f0
+    name: "脏粉"
+    text_color: 0xFFFFFF
+
+  easy_dark:
+    author: "木易"
+    corner_radius: 5
+    back_color: 0x36261F
+    candidate_text_color: 0xDBDBDB
+    comment_text_color: 0xA8A8A8
+    hilited_back_color: 0x471885
+    hilited_candidate_back_color: 0x63453A
+    hilited_candidate_label_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xDBDBDB
+    hilited_comment_text_color: 0xA8A8A8
+    hilited_text_color: 0xD6D6D6
+    label_color: 0xDBDBDB
+    name: "蓝黑"
+    text_color: 0xD6D6D6
+
+  gruvbox_light:
+    author: Q
+    corner_radius: 5
+    back_color: 0xc7f1fb
+    border_color: 0xb2dbeb
+    candidate_text_color: 0x888545
+    comment_text_color: 0xa2577f
+    hilited_back_color: 0xb2dbeb
+    hilited_candidate_text_color: 0x000000
+    hilited_label_color: 0x1a9798
+    hilited_text_color: 0x1d24cc
+    label_color: 0x0e5dd6
+    name: "Gruvbox Light"
+    text_color: 0x6a9d68
+
+  pink:
+    author: swwrww
+    corner_radius: 5
+    back_color: 0x877A73
+    border_color: 0x877A73
+    candidate_text_color: 0xBABABA
+    comment_text_color: 0xFFFFFF
+    hilited_back_color: 0xA996F1
+    hilited_candidate_back_color: 0xA996F1
+    hilited_candidate_text_color: 0xffffff
+    hilited_mark_color: 0xf9f9f9
+    hilited_text_color: 0xFFFFFF
+    label_color: 0xFFFFFF
+    name: "萌猫粉"
+    text_color: 0xFFFFFF
+
+  rose_red:
+    author: "木易"
+    corner_radius: 5
+    back_color: 0xF4F4F6
+    border_color: 0xffffff
+    candidate_text_color: 0x383838
+    comment_text_color: 0x87807B
+    hilited_back_color: 0xEFEFF4
+    hilited_candidate_back_color: 0xEDEDF9
+    hilited_candidate_label_color: 0x884F11FA
+    hilited_candidate_text_color: 0x4F11FA
+    hilited_comment_text_color: 0xF19C38
+    hilited_corner_radius: 5
+    hilited_text_color: 0x8E8E93
+    label_color: 0xaaaaaa
+    name: "玫红"
+    preedit_back_color: 0x364572
+
+  so_young_qmod_01:
+    author: Q
+    corner_radius: 5
+    back_color: 0xe3f6fd
+    border_color: 0xc5c8cc
+    candidate_text_color: 0x736b55
+    comment_text_color: 0x9377b9
+    hilited_candidate_back_color: 0x736b55
+    hilited_candidate_text_color: 0xd5e8ee
+    hilited_comment_text_color: 0xd5e8ee
+    hilited_mark_color: 0xffffff
+    hilited_text_color: 0x808070
+    key_symbol_color: 0x339977
+    label_color: 0x919183
+    name: "致青春·Q改"
+    preview_back_color: 0x6b55d073
+    preview_text_color: 0xd5e8ee
+    text_color: 0xbd8c32
+
+  win10black:
+    back_color: 0x000000
+    border_color: 0x347440
+    candidate_text_color: 0xffffff
+    comment_text_color: 0x666666
+    hilited_back_color: 0x347440
+    hilited_candidate_back_color: 0x347440
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xa9a9a9
+    hilited_label_color: 0xa9a9a9
+    hilited_mark_color: 0xa9a9a9
+    hilited_text_color: 0xffffff
+    label_color: 0xa9a9a9
+    name: Win10Black
+    shadow_color: 0x00000000
+    text_color: 0xffffff
+
+  win10blue:
+    back_color: 0xffffff
+    border_color: 0xd77800
+    candidate_back_color: 0x00ffffff
+    candidate_shadow_color: 0x00ffffff
+    candidate_text_color: 0x000000
+    comment_text_color: 0x222222
+    hilited_back_color: 0xd77800
+    hilited_candidate_back_color: 0xd77800
+    hilited_candidate_shadow_color: 0x00d77800
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_label_color: 0xffffff
+    hilited_mark_color: 0xffffff
+    hilited_shadow_color: 0x00d77800
+    hilited_text_color: 0xffffff
+    label_color: 0x838383
+    name: Win10Blue
     shadow_color: 0x20000000
+    text_color: 0x000000
+
+  win10gray:
+    back_color: 0xf4f4f4
+    border_color: 0xcccccc
+    candidate_text_color: 0x000000
+    comment_text_color: 0x666666
+    hilited_back_color: 0xffffff
+    hilited_candidate_back_color: 0xcccccc
+    hilited_candidate_text_color: 0x000000
+    hilited_comment_text_color: 0x555555
+    hilited_label_color: 0x444444
+    hilited_mark_color: 0x444444
+    hilited_text_color: 0x000000
+    label_color: 0x888888
+    name: Win10Gray
+    shadow_color: 0x20000000
+    text_color: 0x000000
+
+  win11dark:
+    name: Win11Dark
+    candidate_format: " %c %@ "
+    back_color: 0x303030
+    border_color: 0xc202020
+    candidate_back_color: 0x00303030
+    candidate_text_color: 0xc9c9c9
+    comment_text_color: 0xc9c9c9
+    hilited_back_color: 0x202020
+    hilited_candidate_back_color: 0x202020
+    hilited_candidate_text_color: 0xf9f9f9
+    hilited_comment_text_color: 0xf9f9f9
+    hilited_label_color: 0xf9f9f9
+    hilited_mark_color: 0xf9f9f9
+    hilited_text_color: 0xf9f9f9
+    label_color: 0xc9c9c9
+    shadow_color: 0x16000000
+    text_color: 0xc9c9c9
+    corner_radius: 5
+    hilited_corner_radius: 5
+    line_spacing: 8
+    hilite_spacing: 6
+    spacing: 12
+
+  win11light:
+    name: Win11Light
+    candidate_format: " %c %@ "
+    back_color: 0xfbfbfb
+    border_color: 0x10f0f0f0
+    candidate_back_color: 0xfff9f9f9
+    candidate_text_color: 0x000000
+    comment_text_color: 0x666666
+    hilited_back_color: 0xf4f4f4
+    hilited_candidate_back_color: 0xf0f0f0
+    hilited_candidate_text_color: 0x0A0A0A
+    hilited_candidate_label_color: 0x708090
+    hilited_comment_text_color: 0x1a1a1a
+    hilited_mark_color: 0x303030
+    hilited_text_color: 0x1a1a1a
+    label_color: 0x708090
+    shadow_color: 0x00000000
+    text_color: 0x1a1a1a
+    corner_radius: 5
+    hilited_corner_radius: 5
+    line_spacing: 8
+    hilite_spacing: 6
+    spacing: 12
+
+  ayaya_day:
+    name: "文文·晝／Ayaya Day"
+    author: "Lufs X <i@isteed.cc>"
+    alpha: 0.95
+    horizontal: true
+    inline_preedit: true
+    candidate_format: "%c\u2005%@"
+    corner_radius: 5
+    border_height: 0
+    border_width: 0
+    font_face: "LXGWWenKai-Regular,PingFangSC"
+    font_point: 16.5
+    label_font_face: "LXGWWenKai-Regular,PingFangSC"
+    label_font_point: 12
+    color_space: display_p3
+    back_color: 0xFFFFFF
+    border_color: 0xECE4FC
+    candidate_text_color: 0x121212
+    comment_text_color: 0x8E8E8E
+    hilited_candidate_back_color: 0xECE4FC
+    hilited_candidate_label_color: 0xB18FF4
+    hilited_candidate_text_color: 0x7A40EC
+    label_color: 0x888785
+    text_color: 0x8100EB
+    hilited_corner_radius: 0
+
+  ayaya_night:
+    name: "文文·夜／Ayaya Night"
+    author: "ksqsf <i@ksqsf.moe>"
+    alpha: 0.95
+    horizontal: true
+    inline_preedit: true
+    candidate_format: "%c\u2005%@"
+    corner_radius: 5
+    border_height: 0
+    border_width: 0
+    font_face: "LXGWWenKai-Regular,PingFangSC"
+    font_point: 16.5
+    label_font_face: "LXGWWenKai-Regular,PingFangSC"
+    label_font_point: 12
+    color_space: display_p3
+    back_color: 0x1E1E1E
+    border_color: 0xFF303030
+    candidate_text_color: 0xAAA6F0
+    comment_text_color: 0xAAA6F0
+    hilited_back_color: 0xAAA6F0
+    hilited_candidate_back_color: 0xA996F1
+    hilited_candidate_text_color: 0x1E1E1E
+    hilited_comment_text_color: 0x1E1E1E
+    hilited_label_color: 0x1E1E1E
+    hilited_mark_color: 0xF9F9F9
+    hilited_text_color: 0xFFFFFF
+    label_color: 0xAAA6F0
+    text_color: 0xFFFFFF
+    hilited_corner_radius: 0
+
+  # https://gist.github.com/zsakvo/fff6e4859265d5d629439d5ccb553f8a
+  wechat:
+    name: '微信' # 配色取自微信键盘
+    author: zsakvo
+    back_color: 0xFFFFFF
+    border_height: 0
+    border_width: 8
+    candidate_format: '%c %@ '
+    comment_text_color: 0x999999
+    corner_radius: 5
+    hilited_corner_radius: 5
+    font_face: PingFangSC
+    font_point: 16
+    hilited_candidate_back_color: 0x75B100
+    hilited_candidate_text_color: 0xFFFFFF
+    horizontal: true
+    inline_preedit: true
+    label_font_point: 12
+    text_color: 0x424242
+
+  # https://gist.github.com/shlroland/78b3af88b993116c6f3e14b30cfefac0#file-yaml
+  wechat_dark:
+    name: '微信·暗' # 配色取自微信键盘
+    author: shlroland
+    back_color: 0x151515
+    border_color: 0x151515
+    border_height: 0
+    border_width: 8
+    candidate_format: '%c %@ '
+    comment_text_color: 0xAEAEAE
+    corner_radius: 5
+    hilited_corner_radius: 5
+    font_face: PingFangSC
+    font_point: 16
+    hilited_candidate_back_color: 0x75B100
+    hilited_candidate_text_color: 0xFFFFFF
+    horizontal: true
+    inline_preedit: true
+    label_font_point: 12
+    label_color: 0x777777
+    text_color: 0xBBBBBB
+# [End of <preset_color_schemes>]
