@@ -1,5 +1,5 @@
-### 万象拼音  源于[飞声词库](https://github.com/amzxyz/rime_feisheng_dict) 这是一种带音调的词库，具体可以跳转了解优势，结合中英文混输，一个套词库，多种用法
-**万象系列方案：** 本方案为万象增强版 [万象基础版本](https://github.com/amzxyz/rime_feisheng_dict)  [万象同文定制版本](https://github.com/amzxyz/tongwen_wanxiang)
+### 万象拼音  源于[飞声词库](https://github.com/amzxyz/rime_feisheng) 这是一种带音调的词库，具体可以跳转了解优势，结合中英文混输，一个套词库，多种用法
+**万象系列方案：** 本方案为万象增强版 [万象基础版本](https://github.com/amzxyz/rime_feisheng)  [万象同文定制版本](https://github.com/amzxyz/tongwen_wanxiang)
 #### 词库词语全部加音调，设计8种辅助码，头部使用全拼编码，可以转化为任何双拼编码，词库解码顺序为：全拼拼音；墨奇;鹤形;自然码;简单鹤;仓颉首末;虎码首末;五笔前2;汉心码，因此万象拼音支持拼音和辅助码任意两两组合。
 
 #### 使用方法：
@@ -258,6 +258,7 @@ set_shuru_schema:
     * **计算器：**  通过输入大写V引导继续输入如：V3+5  候选框就会有8和3+5=8，基础功能 `+ - * / % ^` 还支持 `sin(x) cos(x)` 等众多运算方式 [点击全面学习](https://github.com/gaboolic/rime-shuangpin-fuzhuma/blob/main/md/calc.md)
     * **自动上屏：**  例如：三位、四位简码唯一时，自动上屏如`jjkw岌岌可危` `zmhu怎么回事` 。默认未开启，方案文件中`speller:`字段下取消注释这两句开启 `#  auto_select: true  #  auto_select_pattern: ^[a-z]+/|^[a-df-zA-DF-Z]\w{3}|^e\w{4}`
     * **错音错字提示：**  例如：输入`gei yu给予`，获得`jǐ yǔ`提示，此功能与双拼类型无关全部支持；
+    * **快符：** 例如 ```'q``` 通过单引号键引导的26字母快速符号自动上屏，双击''重复上一个符号；
     * **辅助码提示：** 任意长度候选词的辅助码提示能力，默认开启1个字的辅助码，Ctrl+a开启和关闭辅助码，Ctrl+p墨奇专属拆字辅助，Ctrl+z自然码拆分辅助，这些都是共用配置可在开关中按自己需求配置，保留一个；
     * **音调显示：** 在辅助码配置中有tone这一参数，可以将音调拼音显示到注释里，通过Ctrl+s可以使得输入码显示全拼并加音调；
     * **Tab循环切换音节：**  当输入多个字词时想要给前面补充辅助码，可以多次按下tab循环切换，这种可能比那些复杂的快捷键好用一些；
