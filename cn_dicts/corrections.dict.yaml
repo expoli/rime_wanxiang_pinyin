@@ -3,7 +3,7 @@
 #错音措辞对照表
 ---
 name: corrections
-version: "2024-09-30"
+version: "2024-12-12"
 sort: by_weight
 columns:
 - text
@@ -12,7 +12,7 @@ columns:
 - comment
 ...
 ### 错音
-馄饨	hún;ub;ub;uk;ga;np;qv;qn;ub; tún;ut;ut;ut;gr;nu;qs;qn;ut;	898
+馄饨	hún;ub;ub;uk;ga;np;qv;qn;ub; tun;ut;ut;ut;gr;nu;qs;qn;ut;	898
 馄饨	hun;ub;ub;uk;ga;np;qv;qn;ub; dun;ut;ut;ut;gr;nu;qs;qn;ut;	898	hún tun
 主角	zhǔ;wt;dw;dw;ig;yg;in;y,yg;wt; jué;dy;dy;dy;gi,gp;ng,nq;xt;qe;ey;	24115
 主角	zhu;wt;dw;dw;ig;yg;in;y,yg;wt; jiao;dy;dy;dy;gi,gp;ng,nq;xt;qe;ey;	24115	zhǔ jué
@@ -186,3 +186,7 @@ columns:
 钜惠	jù;jj;jj;jj;dr;os;zn;qa;jj; huì;ix;ax;xh,hx;dn;jp;nh;gj;ax;	0	巨惠
 摩羯座	mó;gu;gu;mu,um;do;iq;zu;ys;gu; jié;yr;yv;yh;fr;tv;gf;ud;ev; zuò;gr;gt;gz;rg;ig;xg;yw;gt;	107
 魔蝎座	mó;gg;gg;gm,mg;ds;ii;za;ys;gv; xiē;ir;iv;ih;fr;lv;cf;jj;iv; zuò;gr;gt;gz;rg;ig;xg;yw;gt;	0	摩羯(jié)座
+万柏林	wàn;av;ap;ag,ap;du;ms;fp;dn;ap; bǎi;mb;mb;mb;ws;da;eu;sr;lb; lín;mm;mm;mm;ww;dd;ee;ss;ll;	2
+万柏林	wàn;av;ap;ag,ap;du;ms;fp;dn;ap; bó;mb;mb;mb;ws;da;eu;sr;lb; lín;mm;mm;mm;ww;dd;ee;ss;ll;	2	万柏(bǎi)林
+热烈	rè;fh;fh;hv;jn;qf;uc;rv;fe; liè;dh;dh;hl;fn;mf;gc;gq;de;	0
+热列	rè;fh;fh;hv;jn;qf;uc;rv;fe; liè;dd;dd;dd;fi;mn;gp;gq;dd;	0	(热烈)
