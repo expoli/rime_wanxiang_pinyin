@@ -3,7 +3,7 @@
 #https://github.com/amzxyz/RIME-LMDG
 #错音措辞对照表
 ---
-name: 错音错字
+name: corrections
 version: "2024-08-29"
 sort: by_weight
 columns:
