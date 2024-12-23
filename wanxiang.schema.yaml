@@ -78,6 +78,7 @@ engine:
     - abc_segmentor
     - affix_segmentor@radical_lookup  # 部件拆字自定义 tag
     - affix_segmentor@reverse_stroke  #笔画反查
+    - affix_segmentor@add_user_dict
     - punct_segmentor
     - fallback_segmentor
   translators:
@@ -94,6 +95,8 @@ engine:
     - table_translator@chengyu            # 简码成语
     - table_translator@radical_lookup   # 部件拆字反查
     - table_translator@reverse_stroke   #笔画反查
+    - script_translator@user_dict_set
+    - script_translator@add_user_dict
     - lua_translator@*force_gc          # 暴力 GC 降低内存
   filters:
     - lua_filter@*cold_word_drop.filter
@@ -340,6 +343,7 @@ recognizer:
     punct: "^/([0-9]|10|[A-Za-z]+)$"    # 响应 symbols.yaml 的 symbols
     radical_lookup: "^az[a-z]+$"        # 响应部件拆字的反查，与 radical_lookup/prefix 匹配
     reverse_stroke: "^ab[A-Za-z]*$"     #响应笔画反查，与reverse_stroke/prefix 匹配
+    add_user_dict: "^ac[A-Za-z]*$"      #自造词
     unicode: "^U[a-f0-9]+"              # 脚本将自动获取第 2 个字符 U 作为触发前缀，响应 lua_translator@unicode，输出 Unicode 字符
     number: "^R[0-9]+[.]?[0-9]*"        # 脚本将自动获取第 2 个字符 R 作为触发前缀，响应 lua_translator@number_translator，数字金额大写
     gregorian_to_lunar: "^N[0-9]{1,8}"  # 脚本将自动获取第 2 个字符 N 作为触发前缀，响应 lua_translator@lunar，公历转农历，输入 N20240115 得到「二〇二三年腊月初五」
@@ -807,6 +811,37 @@ mohuyin:
     - derive/^v([a-z])/z$1/
     - derive/^i([a-z])/c$1/
     - derive/^u([a-z])/s$1/
+
+user_dict_set:
+  dictionary: wanxiang
+  initial_quality: 0
+  enable_completion: false
+  enable_sentence: false
+  spelling_hints: 100
+  comment_format:
+  enable_user_dict: true # 是否开启自动调频
+  user_dict: zaoci.dict
+  db_class: tabledb
+
+  # 自定义词典加词(ac引导)
+add_user_dict:
+  tag: add_user_dict
+  dictionary: wanxiang
+  initial_quality: -1
+  user_dict: zaoci.dict
+  # ↓ 用户词典格式，tabledb（文本） 或 userdb （二进制）。
+  db_class: tabledb
+  enable_charset_filter: false # 是否开启字符集过滤
+  enable_completion: true # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
+  enable_encoder: true # 是否开启自动造词〔仅 table_translator 有效〕
+  enable_sentence: true #  是否开启自动造句
+  enable_user_dict: true # 是否开启用户词典
+  encode_commit_history: false # 是否对已上屛词自动成词〔仅 table_translator 有效〕
+  preedit_format:   
+  comment_format:
+  prefix: "ac"
+  tips: "〔自造词〕"
+
 
 __include: octagram   #启用语言模型
 #语言模型
