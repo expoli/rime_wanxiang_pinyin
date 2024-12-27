@@ -16,7 +16,7 @@ pro_comment_format:           # 超级注释模块，子项配置 true 开启，
 schema:
   schema_id: wanxiang
   name: 万象拼音PRO
-  version: "2024-09-30"
+  version: "2025-01-01"
   author:
     - amzxyz
   description: |
