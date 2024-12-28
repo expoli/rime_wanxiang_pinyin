@@ -16,7 +16,7 @@ pro_comment_format:           # 超级注释模块，子项配置 true 开启，
 schema:
   schema_id: wanxiang
   name: 万象拼音PRO
-  version: "2024-09-30"
+  version: "2025-01-01"
   author:
     - amzxyz
   description: |
@@ -408,7 +408,8 @@ algebra_zrm:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
     - xform/\bn\b/en/   #解决𧗈字拼音n通过双拼en打出来
-    - xform/ńg|ňg|ǹg/en/
+    - xform/\bng\b/eng/
+    - xform/ńg|ňg|ǹg/eng/
     - derive/^([jqxy])u(;.*)$/$1v$2/
     - derive/^([aoe])([ioun])(;.*)$/$1$1$2$3/
     - xform/^([aoe])(ng)?(;.*)$/$1$1$2$3/
@@ -445,7 +446,8 @@ algebra_flypy:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
     - xform/\bn\b/en/   #解决𧗈字拼音n通过双拼en打出来
-    - xform/ńg|ňg|ǹg/en/
+    - xform/\bng\b/eng/
+    - xform/ńg|ňg|ǹg/eng/
     - derive/^([jqxy])u(;.*)$/$1v$2/
     - derive/^([aoe])([ioun])(;.*)$/$1$1$2$3/
     - xform/^([aoe])(ng)?(;.*)$/$1$1$2$3/
@@ -482,7 +484,8 @@ algebra_mspy:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
     - xform/\bn\b/en/   #解决𧗈字拼音n通过双拼en打出来
-    - xform/ńg|ňg|ǹg/en/
+    - xform/\bng\b/eng/
+    - xform/ńg|ňg|ǹg/eng/
     - derive/^([jqxy])u(;.*)$/$1v$2/
     - derive/^([aoe].*)(;.*)$/o$1$2/
     - xform/^([ae])(.*)(;.*)$/$1$1$2$3/
@@ -522,7 +525,8 @@ algebra_sogou:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
     - xform/\bn\b/en/   #解决𧗈字拼音n通过双拼en打出来
-    - xform/ńg|ňg|ǹg/en/
+    - xform/\bng\b/eng/
+    - xform/ńg|ňg|ǹg/eng/
     - derive/^([jqxy])u(;.*)$/$1v$2/
     - derive/^([aoe].*)(;.*)$/o$1$2/
     - xform/^([ae])(.*)(;.*)$/$1$1$2$3/
@@ -561,7 +565,8 @@ algebra_ziguang:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
     - xform/\bn\b/en/   #解决𧗈字拼音n通过双拼en打出来
-    - xform/ńg|ňg|ǹg/en/
+    - xform/\bng\b/eng/
+    - xform/ńg|ňg|ǹg/eng/
     - derive/^([jqxy])u(;.*)$/$1v$2/
     - xform/^([aoe].*)(;.*)$/Ⓞ$1$2/  # 添上固定的零聲母o，先標記爲大寫O
     - xform/^(\w+?)en(;.*)$/$1Ⓦ$2/
@@ -598,7 +603,8 @@ algebra_abc:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
     - xform/\bn\b/en/   #解决𧗈字拼音n通过双拼en打出来
-    - xform/ńg|ňg|ǹg/en/
+    - xform/\bng\b/eng/
+    - xform/ńg|ňg|ǹg/eng/
     - xform/^([aoe].*)(;.*)$/Ⓞ$1$2/
     - xform/^(\w+?)ei(;.*)$/$1Ⓠ$2/
     - xform/^(\w+?)ian(;.*)$/$1Ⓦ$2/
@@ -849,9 +855,13 @@ __include: octagram   #启用语言模型
 octagram:
   __patch:
     grammar:
-      language: amz-v3n2m1-zh-hans  
-      collocation_max_length: 4
-      collocation_min_length: 2
-    translator/contextual_suggestions: true
-    translator/max_homophones: 7
-    translator/max_homographs: 7
+      language: wanxiang-lts-zh-hans
+      collocation_max_length: 8         #命中的最长词组
+      collocation_min_length: 3         #命中的最短词组，搭配词频健全的词库时候应当最小值设为3避开2字高频词
+      collocation_penalty: -10          #默认-12 对常见搭配词组施加的惩罚值。较高的负值会降低这些搭配被选中的概率，防止过于频繁地出现某些固定搭配。
+      non_collocation_penalty: -12      #默认-12 对非搭配词组施加的惩罚值。较高的负值会降低非搭配词组被选中的概率，避免不合逻辑或不常见的词组组合。
+      weak_collocation_penalty: -24     #默认-24 对弱搭配词组施加的惩罚值。保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合。
+      rear_penalty: -30                 #默认-18 对词组中后续词语的位置施加的惩罚值。较高的负值会降低某些词语在句子后部出现的概率，防止句子结构不自然。
+    translator/contextual_suggestions: false
+    translator/max_homophones: 5
+    translator/max_homographs: 5
