@@ -495,7 +495,7 @@ sort: by_weight
 𪃨	āo;un;;yn;;uf;vx;xx;;	1
 𪓴	áo;	1
 𪓾	áo;	1
-吧	ba;kb;kb;kb;ot;ru;dm;kc;kb;	790
+吧	bā;kb;kb;kb;ot;ru;dm;kc;kb;	999
 把	bǎ;fb;fb;fb;jt;qu;um;rc;fb;	780
 巴	bā;sl;sl,vv;ag,kg,vg;tt;au;mb;cn;vv;	757
 八	bā;pn;pn;pd;ff;ho;hb;wt;pn;	732
@@ -503,7 +503,6 @@ sort: by_weight
 拔	bá;fy;fd;fb,fy;jh;qe,qk;ui;rd;fy;	664
 霸	bà;yo;yo;yo;yl;mb;tv;fa;yo;	654
 罢	bà;sq;ss;sq;ap;wi;yk;lf;sv;	619
-吧	bā;kb;kb;kb;ot;ru;dm;kc;kb;	599
 坝	bà;tb;tr;tb;gm;go;go;fm;tr;	580
 扒	bā;fb;fb;fb;jf;qc;uh;rw;fb;	580
 芭	bā;cb;cb;cb;zt;tu;lm;ac;cb;	567
@@ -36534,10 +36533,9 @@ sort: by_weight
 𪀭	tóng;kn;;nt,tn;;bf;mx;mg;;	1
 𪌢	tǒng;lk;;mt;;dr,jr;ed;sw;;	1
 𪟍	tǒng;	1
+头	tóu;dd;dd;dd;hx;yk,xk;wm;ud;dd;	999
 投	tóu;fu;fy;fu;jl;qe;ur;rm;fy;	799
-头	tóu;dd;dd;dd;hx;yk,xk;wm;ud;dd;	791
 透	tòu;zn;zn;zx;uq;ys;xu;te;zn;	710
-头	tou;dd;dd;dd;hx;yk,xk;wm;ud;dd;	686
 偷	tōu;rd;rd;ry;xi;on;jp;ww;rd;	678
 頭	tóu;dy;;dy,yd;;mc;zw;gk;;	480
 骰	tóu;gu;gy;gu;cl;be;fr;me;gy;	456
@@ -42028,11 +42026,11 @@ sort: by_weight
 𪪹	xūn;	1
 𪰅	xūn;	1
 𫞅	xún;	1
+呀	yā;ky;ky;ky;ou;rh;dl;ka;ky;	988
 亚	yà;ay;ay;ay;dd;mc;fc;go;ay;	773
 压	yā;id;id;id,it;rh;mi,xi;xi;df;id;	749
 牙	yá;gp,ac;ap;ap;du;mh;ly;ah;ap;	711
 雅	yǎ;yv;yf;vy,yv;da;mg;lu;ah;ya;	699
-呀	ya;ky;ky;ky;ou;rh;dl;ka;ky;	676
 鸭	yā;jn;jn;nj,jn;vc;wm;sx;lq;jn;	666
 涯	yá;dt;dt;dy;kg;eg;kg;id;dt;	629
 押	yā;fj;fj;fj;jp;ql;us;rl;fj;	622
@@ -42043,7 +42041,6 @@ sort: by_weight
 鸦	yā;yn;yn;ny,yn;dc;mm;lx;ah;yn;	565
 讶	yà;yy;yy;yy;cu;ih;sl;ya;yy;	558
 娅	yà;ny;ny;ny;yd;vc;bc;vg;ny;	546
-呀	yā;ky;ky;ky;ou;rh;dl;ka;ky;	544
 吖	yā;ky;ky;ky;op;rl;dg;ku;ky;	493
 琊	yá;we;we;wx;ab;ml;nt;ga;we;	484
 衙	yá;rk;ii;xi,xw;hs;hn;pd;tg;rd;	484
