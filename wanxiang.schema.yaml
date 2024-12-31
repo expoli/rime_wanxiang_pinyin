@@ -47,6 +47,9 @@ switches:
     states: [ 调, 音 ]
   - name: fuzhu_switch
     states: [ 助, 辅 ]
+  - name: charset_display
+    states: [ 大, 小 ]
+    reset: 1
 #  - name: zrm_chaifen
 #    states: [ 然, 自 ]
 #  - name: moqi_chaifen
@@ -99,6 +102,7 @@ engine:
     - script_translator@add_user_dict
     - lua_translator@*force_gc          # 暴力 GC 降低内存
   filters:
+    - lua_filter@*chars_filter                      #基于词频的字符集过滤工具
     - lua_filter@*cold_word_drop.filter
     - lua_filter@*long_word_filter                  #长词优先      
     - lua_filter@*autocap_filter                    # 英文自动大写
@@ -120,8 +124,8 @@ engine:
     - simplifier@zrm_chaifen                        #自然码拆分型辅助码查询，放在超级注释后面
     - uniquifier                                    # 去重
 
-# Lua 基于词频的字符集过滤，小于设定值将不会显示在候选中
-word_frequency_filter: 2
+#基于词频的字符集过滤，小于设定值的词频将被过滤，但反查模式例外显示全集，如果存在多音字在低频和高频两个极端则以高频为判断依据，避免了被误伤
+chars_filter: 80   
 # Lua 配置: 日期、时间、星期、ISO 8601、时间戳的触发关键字
 date_translator:
   date: date            # 日期： 2022-11-29
@@ -368,8 +372,10 @@ key_binder:
     - { when: has_menu, accept: "Control+z", toggle: zrm_chaifen }
 #使用快捷键Control+a开启和关闭辅助码显示
     - { when: has_menu, accept: "Control+a", toggle: fuzhu_switch }
-#使用快捷键Control+s开启和关闭声调显示
-    - { when: has_menu, accept: "Control+s", toggle: "tone_display" }
+#使用快捷键Control+s开启和关闭输入码音调显示    
+    - { when: has_menu, accept: "Control+s", toggle: tone_display }
+#字符集过滤开关快捷键Ctrl+g
+    - { when: has_menu, accept: "Control+g", toggle: charset_display }
 # 使用 tab 在不同音节之间跳转
     - { when: has_menu, accept: "Tab", send: "Control+Right" }
     - { when: composing, accept: "Tab", send: "Control+Right" }
