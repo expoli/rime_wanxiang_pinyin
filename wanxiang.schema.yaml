@@ -116,7 +116,6 @@ engine:
     - simplifier@traditionalize                     # 简繁切换
     - simplifier@mars                               #火星文
     - simplifier@chinese_english                    #中英翻译
-    - simplifier@pinyinhint                         #注释里显示汉字读音，多音字支持
     - lua_filter@*search@radical_pinyin             # 部件拆字辅码放在简繁转换之后
 #    - lua_filter@*is_in_user_dict                  # 根据是否在用户词典，在结尾加上一个星号 *
 #    - lua_filter@*cn_en_spacer                     #启用时中英混输为中英混输词条（cn_en.dict.yaml）自动增加空格，示例：`VIP中P` → `VIP 中 P`              
@@ -193,10 +192,8 @@ reduce_english_filter:
 translator:
   dictionary: wanxiang          # 挂载词库 wanxiang.dict.yaml
 #  prism: double_pinyin          # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
-  contextual_suggestions: true   #上下文建议开启〔需配合 grammar 使用〕
   prioritize_quality: true  # 启用优先质量选项
   enable_completion: true  # 启用候选词补全
-  max_candidates: 10  # 设置最大候选词数量
 #  punctuation_model: default  # 设置标点符号模型
 #  single_char_first: true  # 优先显示单个字符
 #  candidate_filter: "^(?!abc).*$"  # 过滤掉包含 "abc" 的候选词
@@ -204,7 +201,7 @@ translator:
 #  db_class: tabledb  #开启后就不会产生zrm.userdb这样的文件夹，会直接输出文本zrm.txt同时无法使用同步能力
   enable_user_dict: true # 是否开启自动调频
   enable_correction: false #是否开启自动纠错
-  encode_commit_history: true   # 预留历史上屏自动编码成词
+#  encode_commit_history: true   # 预留历史上屏自动编码成词
   initial_quality: 3       # 初始质量拼音的权重应该比英文大
 #  secondary_quality: 0.8  # 设置次要质量
   spelling_hints: 50             # 将注释以词典字符串形式完全暴露，通过pro_comment_format.lua完全接管，灵活配置。
@@ -271,7 +268,6 @@ chinese_english:
   option_name: chinese_english
   opencc_config: chinese_english.json
   tips: char
-  show_in_comment: true
   comment_format:
     - "xform/-/ /"
 
@@ -834,7 +830,7 @@ user_dict_set:
   spelling_hints: 100
   comment_format:
   enable_user_dict: true
-  user_dict: user
+  user_dict: zc
 
 
   # 自定义词典加词(ac引导)
@@ -842,7 +838,7 @@ add_user_dict:
   tag: add_user_dict
   dictionary: wanxiang
   initial_quality: -1
-  user_dict: user
+  user_dict: zc
   enable_charset_filter: false # 是否开启字符集过滤
   enable_completion: true # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
   enable_encoder: true # 是否开启自动造词〔仅 table_translator 有效〕
