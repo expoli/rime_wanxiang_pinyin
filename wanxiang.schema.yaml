@@ -25,7 +25,7 @@ schema:
     - melt_eng        # 英文输入，作为次翻译器挂载到拼音方案
     - radical_pinyin  # 反查：部件拆字，反查及辅码
     - stroke          #反查：笔画组字
-
+    - charset         #字符集过滤器
 
 # 开关
 # reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。
@@ -43,10 +43,15 @@ switches:
   - name: emoji
     states: [ 💀, 😄 ]
     reset: 1
+  - name: chinese_english
+    states: [ 译, 翻 ]
   - name: tone_display
     states: [ 调, 音 ]
   - name: fuzhu_switch
     states: [ 助, 辅 ]
+  - name: charset_filter
+    states: [ 小, 大 ]
+    reset: 0
 #  - name: zrm_chaifen
 #    states: [ 然, 自 ]
 #  - name: moqi_chaifen
@@ -99,6 +104,7 @@ engine:
     - script_translator@add_user_dict
     - lua_translator@*force_gc          # 暴力 GC 降低内存
   filters:
+    - lua_filter@*chars_filter                      #字符集过滤
     - lua_filter@*cold_word_drop.filter
     - lua_filter@*long_word_filter                  #长词优先      
     - lua_filter@*autocap_filter                    # 英文自动大写
@@ -120,8 +126,8 @@ engine:
     - simplifier@zrm_chaifen                        #自然码拆分型辅助码查询，放在超级注释后面
     - uniquifier                                    # 去重
 
-# Lua 基于词频的字符集过滤，小于设定值将不会显示在候选中
-word_frequency_filter: 2
+# Lua 配置 为字符集过滤预留了一个是否放行英文字母的选项: true 放行, false过滤,也可以直接将外挂中英混输直接去掉
+charset_filter_abc: true  
 # Lua 配置: 日期、时间、星期、ISO 8601、时间戳的触发关键字
 date_translator:
   date: date            # 日期： 2022-11-29
@@ -368,8 +374,10 @@ key_binder:
     - { when: has_menu, accept: "Control+z", toggle: zrm_chaifen }
 #使用快捷键Control+a开启和关闭辅助码显示
     - { when: has_menu, accept: "Control+a", toggle: fuzhu_switch }
-#使用快捷键Control+s开启和关闭声调显示
-    - { when: has_menu, accept: "Control+s", toggle: "tone_display" }
+#通过快捷键Control+s使得输入码显示音调
+    - { when: has_menu, accept: "Control+s", toggle: tone_display }
+#通过快捷键Control+g开启字符集过滤
+    - { when: has_menu, accept: "Control+g", toggle: charset_filter }
 # 使用 tab 在不同音节之间跳转
     - { when: has_menu, accept: "Tab", send: "Control+Right" }
     - { when: composing, accept: "Tab", send: "Control+Right" }

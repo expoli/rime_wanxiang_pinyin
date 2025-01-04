@@ -7,6 +7,10 @@ name: compatible
 version: "2024-11-11"
 sort: by_weight
 ...
+血晕	xiě;pm;pm;pa,pm;ua;ht;ta;tl;pm; yùn;oi;oi;oj;vt;aq;oy;jp;oi;	222
+血晕	xuè;pm;pm;pa,pm;ua;ht;ta;tl;pm; yùn;oi;oi;oj;vt;aq;oy;jp;oi;	68
+炸鱼	zhà;hv;hv;hv;tu;fs;cw;ot;hv; yú;da;da;da;qq;nm;wv;qg;ea;	28
+炸鱼	zhá;hv;hv;hv;tu;fs;cw;ot;hv; yú;da;da;da;qq;nm;wv;qg;ea;	544
 命中	mìng;re;re;re;eb;ol;jz;wg;re; zhōng;kl;ll;aa,ka;op;ll;dg;k,kh;aa;	708
 命中	mìng;re;re;re;eb;ol;jz;wg;re; zhòng;kl;ll;aa,ka;op;ll;dg;k,kh;aa;	661
 干不干	gàn;au;au;aa;ss;mj;eg;fg;au; bú;ab;ad;ad,ax;dh;mf;cb;i,gi;ad; gàn;au;au;aa;ss;mj;eg;fg;au;	380
