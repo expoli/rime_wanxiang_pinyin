@@ -126,8 +126,7 @@ engine:
     - simplifier@zrm_chaifen                        #自然码拆分型辅助码查询，放在超级注释后面
     - uniquifier                                    # 去重
 
-# Lua 配置 为字符集过滤预留了一个是否放行英文字母的选项: true 放行, false过滤,也可以直接将外挂中英混输直接去掉
-charset_filter_abc: true  
+
 # Lua 配置: 日期、时间、星期、ISO 8601、时间戳的触发关键字
 date_translator:
   date: date            # 日期： 2022-11-29
