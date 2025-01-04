@@ -49,6 +49,7 @@ switches:
     states: [ 调, 音 ]
   - name: fuzhu_switch
     states: [ 助, 辅 ]
+    reset: 1
   - name: charset_filter
     states: [ 小, 大 ]
     reset: 0
