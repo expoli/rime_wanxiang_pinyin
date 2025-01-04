@@ -367,7 +367,7 @@ key_binder:
 #分号用于次选
     - { when: has_menu, accept: semicolon, send: 2 }
 #使用Control+e进入翻译模式
-    - { when: has_menu, accept: "Control+e", toggle: chinese_english}
+    - { when: has_menu, accept: "Control+e", toggle: chinese_english }
 #使用快捷键Control+m/z分别开启和关闭墨奇或自然码辅助码拆分显示
     - { when: has_menu, accept: "Control+m", toggle: moqi_chaifen }
     - { when: has_menu, accept: "Control+z", toggle: zrm_chaifen }
