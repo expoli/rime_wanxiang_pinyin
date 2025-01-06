@@ -170,7 +170,6 @@ sort: by_weight
 策勒	cè;vu;vn;vc;nh;hb;rm;tg;vn; lè;gl;gl;lg,gl;vu;ts;ts;af;cl;	383
 岑巩	cén;uv;ev;uj;pr;un;va;mw;sj; gǒng;gf;gf;gf;ph;mi;ui;am;gf;	364
 岑溪	cén;uv;ev;uj;pr;un;va;mw;sj; xī;dd;dd;dx;kx;ek;km;ie;dd;	449
-曾都	céng;bo;bo;ob,bo;fv;ca;ho;ul;eo; dōu;le;le;ev;gb;jl;qt;ft;ue;	1
 茶陵	chá;cm;cm;cm;zf;td;le;aw;cx; líng;ew;ew;el,ew;bj;ne;th;bf;ew;	467
 察雅	chá;bu;bx;bj;ii;jf;wf;pw;gx; yǎ;yv;yf;vy,yv;da;mg;lu;ah;ya;	313
 察隅	chá;bu;bx;bj;ii;jf;wf;pw;gx; yú;ed;ey;ey;bh;nb;tv;bj;ed;	431
@@ -2949,6 +2948,7 @@ sort: by_weight
 枣庄	zǎo;ud;ad;cd;dh;dy;ew;gm;ad; zhuāng;gt;gt;gt;rg;ig;xg;yf;gt;	593
 泽州	zé;df;dl;df;kp;eq;ku;ic;da; zhōu;dl;dl;id,da;hp;il;oo;yt;da;	496
 增城	zēng;to;to;tc;gv;ga;go;fu;to; chéng;ti;ti;ti;gh;gs;ga;fd;tg;	602
+曾都	zēng;bo;bo;ob,bo;fv;ca;ho;ul;eo; dū;le;le;ev;gb;jl;qt;ft;ue;	1
 札达	zhá;mv;mv;mg;wr;du;ea;sn;lv; dá;zd;zd;zd;xq;yk,xk;mu;dp;zd;	375
 扎囊	zhā;fv;fv;fg;jr;qu,xu;ua;rn;fv; náng;gy;ay;ay;dh;jv;nt;gk;ah;	358
 柞水	zhà;mv;mv;mv;wu;ds;ew;st;lv; shuǐ;ln;ln;ad,uv;oo;ee;ks;ii;vn;	418
@@ -3276,7 +3276,6 @@ sort: by_weight
 策勒县	cè;vu;vn;vc;nh;hb;rm;tg;vn; lè;gl;gl;lg,gl;vu;ts;ts;af;cl; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	303
 岑巩县	cén;uv;ev;uj;pr;un;va;mw;sj; gǒng;gf;gf;gf;ph;mi;ui;am;gf; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	337
 岑溪市	cén;uv;ev;uj;pr;un;va;mw;sj; xī;dd;dd;dx;kx;ek;km;ie;dd; shì;wj;wj;wj;iy;yb;zr;ym;wj;	398
-曾都区	céng;bo;bo;ob,bo;fv;ca;ho;ul;eo; dōu;le;le;ev;gb;jl;qt;ft;ue; qū;kx;kx;ki;dr;sk;nb;aq;kx;	322
 茶陵县	chá;cm;cm;cm;zf;td;le;aw;cx; líng;ew;ew;el,ew;bj;ne;th;bf;ew; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	383
 察雅县	chá;bu;bx;bj;ii;jf;wf;pw;gx; yǎ;yv;yf;vy,yv;da;mg;lu;ah;ya; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	261
 察隅县	chá;bu;bx;bj;ii;jf;wf;pw;gx; yú;ed;ey;ey;bh;nb;tv;bj;ed; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	341
@@ -6124,6 +6123,7 @@ sort: by_weight
 枣庄市	zǎo;ud;ad;cd;dh;dy;ew;gm;ad; zhuāng;gt;gt;gt;rg;ig;xg;yf;gt; shì;wj;wj;wj;iy;yb;zr;ym;wj;	504
 泽州县	zé;df;dl;df;kp;eq;ku;ic;da; zhōu;dl;dl;id,da;hp;il;oo;yt;da; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	424
 增城区	zēng;to;to;tc;gv;ga;go;fu;to; chéng;ti;ti;ti;gh;gs;ga;fd;tg; qū;kx;kx;ki;dr;sk;nb;aq;kx;	1
+曾都区	zēng;bo;bo;ob,bo;fv;ca;ho;ul;eo; dū;le;le;ev;gb;jl;qt;ft;ue; qū;kx;kx;ki;dr;sk;nb;aq;kx;	322
 札达县	zhá;mv;mv;mg;wr;du;ea;sn;lv; dá;zd;zd;zd;xq;yk,xk;mu;dp;zd; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	309
 扎兰屯	zhā;fv;fv;fg;jr;qu,xu;ua;rn;fv; lán;bs;bs;bs,qe;fu;tm;ht;uf;es; tún;av;av;ag;dr;pu;fs;gb;av;	438
 扎囊县	zhā;fv;fv;fg;jr;qu,xu;ua;rn;fv; náng;gy;ay;ay;dh;jv;nt;gk;ah; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	343
