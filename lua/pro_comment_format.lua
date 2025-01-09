@@ -201,21 +201,12 @@ function ZH.func(input, env)
     ZH.init(env)
     CR.init(env)
 
-<<<<<<< HEAD
-    --申明反查模式的tag状态
-=======
-    --声明反查模式的tag状态
->>>>>>> refs/remotes/origin/main
 	local seg = env.engine.context.composition:back()
 	env.is_radical_mode = seg and (
 		seg:has_tag("radical_lookup") 
 		or seg:has_tag("reverse_stroke") 
 		or seg:has_tag("add_user_dict")
 	) or false
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/main
 
     -- 遍历输入的候选词
     for cand in input:iter() do
