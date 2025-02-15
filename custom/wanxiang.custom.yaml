@@ -244,19 +244,7 @@ patch:
     tags: [ abc, number, gregorian_to_lunar ]  # 限制在对应 tag，不对其他如反查的内容做简繁转换
   
   
-  # 标点符号
-  # punctuator 下面有三个子项：
-  #   full_shape 全角标点映射
-  #   half_shape 半角标点映射
-  #   symbols    Rime 的预设配置是以 '/' 前缀开头输出一系列字符，自定义的 symbols_v.yaml 修改成了 'V' 开头。
-  punctuator:
-    digit_separators: ":,."  #数字分隔符
-    full_shape:
-      __include: default:/punctuator/full_shape  # 从 default.yaml 导入配置
-    half_shape:
-      __include: default:/punctuator/half_shape  # 从 default.yaml 导入配置
-    symbols:
-      __include: symbols:/symbols         # 从 symbols_v.yaml 导入配置
+
   
   
   # 部件拆字反查
@@ -282,7 +270,7 @@ patch:
   
   # 部件拆字滤镜
   radical_reverse_lookup:
-    tags: [ radical_lookup,reverse_stroke ]
+    tags: [ radical_lookup, reverse_stroke ]
     overwrite_comment: true
     dictionary: wanxiang #带音调的词典
   
